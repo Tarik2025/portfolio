@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <!-- Favicon / Logo -->
+  <link rel="icon" href="/images/tlogo.jpg" type="image/jpeg">
+
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website of Shaik Mahammad Tarik">
+  <meta name="keywords" content="Tarik, Portfolio, Developer, Engineer, Projects, Certifications">
+  <meta name="author" content="Shaik Mahammad Tarik">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/skills.css">
+</head>
+<body class="bg-dark text-white">
+  <%- include("partials/navbar") %>
+  
+
+
+  <div class="container mt-5">
+    <h2 class="text-center text-info">Skills</h2>
+
+    <div class="row mt-4">
+
+      <!-- Programming Languages -->
+      <div class="col-md-4 mb-3">
+        <div class="card bg-dark border-info text-white h-100">
+          <div class="card-body text-center">
+            <img src="/images/skills/programming.jpeg" alt="Programming" class="img-fluid mb-3" width="70">
+            <h5 class="card-title">Programming</h5>
+            <ul class="list-unstyled">
+              <li>C++, Python, C, Embedded C</li>
+              <li>MATLAB, HTML, CSS, JavaScript</li>
+              <li>Verilog, VHDL</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="col-md-4 mb-3">
+        <div class="card bg-dark border-info text-white h-100">
+          <div class="card-body text-center">
+            <img src="/images/skills/backend.png" alt="Backend" class="img-fluid mb-3" width="70">
+            <h5 class="card-title">Backend</h5>
+            <ul class="list-unstyled">
+              <li>Node.js</li>
+              <li>Express.js</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Databases -->
+      <div class="col-md-4 mb-3">
+        <div class="card bg-dark border-info text-white h-100">
+          <div class="card-body text-center">
+            <img src="/images/skills/database.png" alt="Database" class="img-fluid mb-3" width="70">
+            <h5 class="card-title">Databases</h5>
+            <ul class="list-unstyled">
+              <li>MySQL</li>
+              <li>MongoDB</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="col-md-4 mb-3">
+        <div class="card bg-dark border-info text-white h-100">
+          <div class="card-body text-center">
+            <img src="/images/skills/tools.png" alt="Tools" class="img-fluid mb-3" width="70">
+            <h5 class="card-title">Tools</h5>
+            <ul class="list-unstyled">
+              <li>VS Code, Arduino IDE</li>
+              <li>Keil, Proteus</li>
+              <li>MS Excel, MS Office</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="col-md-4 mb-3">
+        <div class="card bg-dark border-info text-white h-100">
+          <div class="card-body text-center">
+            <img src="/images/skills/softskills.png" alt="Soft Skills" class="img-fluid mb-3" width="70">
+            <h5 class="card-title">Soft Skills</h5>
+            <ul class="list-unstyled">
+              <li>Leadership</li>
+              <li>Adaptability</li>
+              <li>Flexibility</li>
+              <li>Hardworking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+
+  <!-- ✅ Footer -->
+  <%- include("partials/footer") %>
+</body>
+</html>

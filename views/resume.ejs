@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <!-- Favicon / Logo -->
+  <link rel="icon" href="/images/tlogo.jpg" type="image/jpeg">
+
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website of Shaik Mahammad Tarik">
+  <meta name="keywords" content="Tarik, Portfolio, Developer, Engineer, Projects, Certifications">
+  <meta name="author" content="Shaik Mahammad Tarik">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/resume.css">
+</head>
+<body class="bg-dark text-white">
+  <%- include("partials/navbar") %>
+  
+
+
+  <div class="container mt-5 text-center">
+    <h2 class="text-info">Resume</h2>
+    <p class="text-muted">Click the button below to view or download my latest resume.</p>
+
+    <!-- Resume Card -->
+    <div class="card bg-dark border-info text-white mx-auto mt-4 shadow" style="max-width: 500px;">
+      <div class="card-body">
+        <i class="bi bi-file-earmark-person-fill text-info" style="font-size: 3rem;"></i>
+        <h5 class="card-title mt-3">My Resume</h5>
+        <p class="card-text">Updated resume containing details of my education, skills, projects, and experience.</p>
+        <a href="https://drive.google.com/file/d/1yhBXVxMbMMj8NpmuLZFslblRg7Ho3MB6/view?usp=sharing" 
+           target="_blank" class="btn btn-info w-100">
+          <i class="bi bi-box-arrow-up-right"></i> View Resume
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+
+  <!-- ✅ Footer -->
+  <%- include("partials/footer") %>
+</body>
+</html>

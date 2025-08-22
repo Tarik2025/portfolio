@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon / Logo -->
+  <link rel="icon" href="/images/tlogo.jpg" type="image/jpeg">
+
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website of Shaik Mahammad Tarik">
+  <meta name="keywords" content="Tarik, Portfolio, Developer, Engineer, Projects, Certifications">
+  <meta name="author" content="Shaik Mahammad Tarik">
+  <title>About Me</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/about.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #121212; /* Darker background */
+      color: #fff;
+    }
+    main {
+      flex: 1; /* Push footer to bottom */
+    }
+    .footer-divider {
+      border-top: 2px solid #17a2b8; /* Info color */
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Navbar -->
+  <%- include("partials/navbar") %>
+
+  <!-- ✅ Main Content -->
+  <main>
+    <div class="container mt-5">
+      <h2 class="text-center about-heading mb-4">About Me</h2>
+
+      
+      <div class="row">
+        <!-- About Text -->
+        <div class="col-md-8">
+          <p class="mt-3">
+            I am a motivated and ambitious professional with a strong academic background in Electronics and Communication Engineering.  
+            My journey in technology has shaped me into a problem-solver who thrives in both independent and collaborative environments.  
+            Over time, I have gained hands-on experience in areas such as <span class="text-warning">Machine Learning, Deep Learning, and Data Analytics</span>, 
+            where I have worked on real-world projects like water flow analysis, resume screening, and image-to-anime conversion.  
+          </p>
+          <p class="mt-3">
+            Alongside my ML expertise, I have developed a deep interest in <span class="text-warning">MERN Stack Development</span> (MongoDB, Express.js, React, and Node.js).  
+            I enjoy building modern, scalable, and user-friendly web applications, integrating my knowledge of front-end and back-end development 
+            to create complete solutions. This combination of skills allows me to bridge the gap between intelligent data-driven systems 
+            and interactive software applications.  
+          </p>
+          <p class="mt-3">
+            My core strength lies in adapting quickly to new challenges, continuously learning, and applying my technical knowledge to solve complex problems.  
+            I am eager to contribute to a forward-thinking organization where I can utilize my expertise in programming, MERN stack development, and machine learning 
+            to build innovative products that make a meaningful impact.  
+          </p>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card bg-dark border-info text-center shadow p-3" style="width: 18rem;">
+            <img src="/images/profile.jpg" alt="Profile" class="rounded-circle mx-auto d-block" style="width: 150px; height: 150px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title text-info">Shaik Mahammad Tarik</h5>
+              <p class="card-text text-glow">
+  Electronics & Communication Engineer <br>
+  MERN Stack | Machine Learning Enthusiast
+</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Divider before footer -->
+  <div class="footer-divider"></div>
+
+  <!-- ✅ Footer -->
+  <%- include("partials/footer") %>
+</body>
+</html>

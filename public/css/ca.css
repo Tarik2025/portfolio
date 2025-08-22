@@ -1,0 +1,258 @@
+/* ==============================
+   Global Styles
+============================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #001f3f, #003366, #004080);
+  color: #f1faff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  line-height: 1.7;
+  animation: bgMove 20s infinite alternate ease-in-out;
+}
+
+@keyframes bgMove {
+  0%   { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+/* ==============================
+   Navbar
+============================== */
+.navbar {
+  background: linear-gradient(to right, #001830, #00264d);
+  box-shadow: 0 2px 15px rgba(0, 238, 255, 0.25);
+  animation: slideDown 1.2s ease-in-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.navbar .nav-link {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  margin: 0 8px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #00e6ff !important;
+  text-shadow: 0 0 8px #00e6ff;
+}
+
+/* ==============================
+   Headings
+============================== */
+h2, h3 {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(90deg, #ffeb3b, #fff176, #ffee58);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  animation: fadeInUp 1.5s ease, glowText 3s infinite ease-in-out;
+}
+
+@keyframes glowText {
+  0%, 100% { text-shadow: 0 0 5px #fff9c4, 0 0 15px #ffeb3b; }
+  50%      { text-shadow: 0 0 15px #fff59d, 0 0 30px #ffd600; }
+}
+
+h2::after, h3::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 80px;
+  height: 4px;
+  background: #ffd600;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px #ffd600; opacity: 0.7; }
+  50%      { box-shadow: 0 0 20px #ffee58; opacity: 1; }
+}
+
+/* ==============================
+   Cards
+============================== */
+/* ==============================
+   Cards
+============================== */
+.card {
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.08); /* brighter transparent layer */
+  box-shadow: 0 5px 20px rgba(255, 255, 100, 0.25);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeIn 1.5s ease;
+  color: #fefefe; /* default bright text inside */
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.45);
+}
+
+.card-body h5 {
+  color: #ffeb3b; /* golden heading inside card */
+  font-weight: bold;
+  text-shadow: 0 0 5px #fff59d;
+}
+
+.card-body p {
+  color: #f1f1f1; /* brighter body text */
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card-body ul li {
+  color: #f8f9fa; /* ensure list items readable */
+}
+
+/* ==============================
+   Paragraphs (global)
+============================== */
+/* Force brighter paragraph text */
+/* Fix readability for all paragraph text */
+
+
+
+
+/* ==============================
+   Achievements Glow Effect
+============================== */
+.list-group-item {
+  background: rgba(255, 255, 255, 0.1); /* lighter so text is visible */
+  color: #fdfdfd !important; /* force brighter */
+}
+
+.list-group-item strong {
+  color: #ffd600;
+  text-shadow: 0 0 6px #ffee58;
+}
+
+
+/* ==============================
+   Card Images
+============================== */
+.card img {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  max-height: 300px;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1);
+  animation: floatImage 6s infinite ease-in-out, sunPulse 4s infinite alternate;
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+@keyframes floatImage {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@keyframes sunPulse {
+  0%   { filter: brightness(0.9) drop-shadow(0 0 5px #ffd600); }
+  50%  { filter: brightness(1.2) drop-shadow(0 0 20px #ffeb3b); }
+  100% { filter: brightness(1.0) drop-shadow(0 0 8px #ffee58); }
+}
+
+.card img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 15px #fff176);
+}
+
+/* ==============================
+   List Items
+============================== */
+.list-group-item {
+  font-size: 1.05rem;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8f9fa;
+  border: none;
+  transition: background 0.3s, transform 0.3s;
+  animation: fadeInUp 1s ease;
+}
+
+.list-group-item:hover {
+  background: rgba(255, 235, 59, 0.15);
+  transform: translateX(6px);
+  cursor: pointer;
+}
+
+/* ==============================
+   Achievements Glow Effect
+============================== */
+.list-group-item strong {
+  color: #ffd600;
+  text-shadow: 0 0 6px #ffee58;
+  animation: blink 3s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+}
+
+/* ==============================
+   Footer
+============================== */
+footer {
+  background: linear-gradient(to right, #001830, #00264d);
+  color: #e0f7fa;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 15px rgba(255, 215, 0, 0.25);
+  margin-top: auto;
+  animation: fadeIn 2.5s ease-in-out;
+}
+
+footer a {
+  color: #ffee58;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #ffd600;
+}
+
+/* ==============================
+   Animations & Utilities
+============================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 768px) {
+  h2, h3 {
+    font-size: 1.4rem;
+  }
+  .card img {
+    max-height: 160px;
+  }
+  .navbar .nav-link {
+    font-size: 0.9rem;
+  }
+}

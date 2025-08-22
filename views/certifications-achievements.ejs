@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon / Logo -->
+  <link rel="icon" href="/images/tlogo.jpg" type="image/jpeg">
+
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website of Shaik Mahammad Tarik">
+  <meta name="keywords" content="Tarik, Portfolio, Developer, Engineer, Projects, Certifications">
+  <meta name="author" content="Shaik Mahammad Tarik">
+  <title>Certifications & Achievements</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/ca.css">
+   
+  <style>
+    body {
+      background-color: #f9fafc;
+    }
+    h2 {
+      font-weight: bold;
+      color: #1a2a6c;
+    }
+    .card {
+      border-radius: 15px;
+    }
+    .card img {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      max-height: 220px;
+      object-fit: cover;
+    }
+    .list-group-item {
+      font-size: 1.05rem;
+      padding: 12px 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+  <div class="container my-5">
+
+    <!-- Certifications Section -->
+    <h2 class="mb-4 text-center">📜 Certifications</h2>
+   <div style="background: rgba(0, 20, 50, 0.8); 
+            color: #f9f9f9; 
+            font-size: 1.2rem; 
+            line-height: 1.8; 
+            text-align: center; 
+            text-shadow: 0 0 6px rgba(0,0,0,0.8); 
+            margin: 2rem auto; 
+            padding: 20px; 
+            border-radius: 12px; 
+            max-width: 900px; 
+            box-shadow: 0 0 20px rgba(0, 230, 255, 0.3);">
+  <p style="margin: 0; color: #ffffff; font-weight: 400;">
+    My certifications represent both technical and academic excellence, 
+    covering core mathematical foundations and modern machine learning techniques. 
+    They have provided me with hands-on experience and the ability to translate theory into practical projects.
+  </p>
+</div>
+
+
+
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+      <!-- Certificate 1 -->
+      <div class="col">
+        <div class="card shadow-lg h-100">
+          <!-- 🔽 Add Certificate Image -->
+          <img src="/images/certificates/ML_page-0001.jpg" class="card-img-top" alt="Machine Learning & Deep Learning Certificate">
+          <div class="card-body">
+            <h5 class="card-title">Machine Learning and Deep Learning – Fundamentals and Applications</h5>
+            <p><strong>NPTEL, IIT Guwahati | Jul–Oct 2024 | Score: 58%</strong></p>
+            <p >
+              This course provided a strong foundation in machine learning and deep learning concepts, 
+              bridging mathematical theory with practical implementations.
+            </p>
+            <ul>
+              <li>Studied <strong>supervised and unsupervised learning</strong> approaches.</li>
+              <li>Explored <strong>neural networks, CNNs, RNNs</strong>, and deep architectures.</li>
+              <li>Hands-on practice with <strong>backpropagation, optimization, and regularization techniques</strong>.</li>
+              <li>Applied ML/DL models to real-world domains such as <strong>computer vision and predictive analytics</strong>.</li>
+              <li>Improved <strong>analytical problem-solving</strong> and gained the ability to design end-to-end ML pipelines.</li>
+            </ul>
+            <p><strong>Key Tools & Languages:</strong> Python, NumPy, TensorFlow, Scikit-learn</p>
+            <p><strong>Applications:</strong> Data-driven decision-making, automation, and research in AI.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate 2 -->
+      <div class="col">
+        <div class="card shadow-lg h-100">
+          <!-- 🔽 Add Certificate Image -->
+          <img src="/images/certificates/BSC.jpeg" class="card-img-top" alt="Basic Linear Algebra Certificate">
+          <div class="card-body">
+            <h5 class="card-title">Basic Linear Algebra</h5>
+            <p><strong>NPTEL, IIT Bombay | Feb–Apr 2023 | Score: 52%</strong></p>
+            <p>
+              This certification strengthened my mathematical foundation, crucial for advanced AI and 
+              engineering research, by focusing on the building blocks of linear systems.
+            </p>
+            <ul>
+              <li>Mastered <strong>matrices, determinants, vector spaces, eigenvalues & eigenvectors</strong>.</li>
+              <li>Understood <strong>linear transformations</strong> and their applications.</li>
+              <li>Applied algebraic methods to <strong>machine learning, computer vision, and signal processing</strong>.</li>
+              <li>Enhanced <strong>logical reasoning</strong> and mathematical modeling skills for complex engineering tasks.</li>
+            </ul>
+            <p><strong>Applications:</strong> Foundation for ML algorithms, 3D graphics, robotics, and optimization problems.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Technical Skills from Certifications -->
+    <h3 class="mt-5 mb-3 text-center">🔧 Technical Skills Gained</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <ul class="list-group shadow-sm">
+          <li class="list-group-item"><strong>Mathematical Foundations:</strong> Linear Algebra, Probability, Statistics</li>
+          <li class="list-group-item"><strong>Machine Learning Models:</strong> Regression, Classification, Clustering</li>
+          <li class="list-group-item"><strong>Deep Learning:</strong> CNN, RNN, Backpropagation, Optimization</li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="list-group shadow-sm">
+          <li class="list-group-item"><strong>Programming & Tools:</strong> Python, NumPy, TensorFlow, MATLAB</li>
+          <li class="list-group-item"><strong>Applications:</strong> Computer Vision, Predictive Analytics, Data-driven Decision Making</li>
+          <li class="list-group-item"><strong>Research Readiness:</strong> Applying ML/DL in engineering and scientific domains</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Achievements Section -->
+    <h2 class="mt-5 mb-4 text-center">🏆 Achievements</h2>
+    <div style="background: rgba(0, 20, 50, 0.8); 
+            color: #f9f9f9; 
+            font-size: 1.2rem; 
+            line-height: 1.8; 
+            text-align: center; 
+            text-shadow: 0 0 6px rgba(0,0,0,0.8); 
+            margin: 2rem auto; 
+            padding: 20px; 
+            border-radius: 12px; 
+            max-width: 900px; 
+            box-shadow: 0 0 20px rgba(0, 230, 255, 0.3);">
+    <p style="margin: 0; color: #ffffff; font-weight: 400;">
+      A showcase of academic excellence, problem-solving ability, and leadership skills demonstrated throughout my career.
+    </p> </div>
+    <ul class="list-group shadow-lg">
+      <li class="list-group-item">Awarded the <strong>Bharathi Cement Scholarship</strong> for meritorious academic performance.</li>
+      <li class="list-group-item">Maintained a <strong>consistent CGPA of 9.2</strong>, reflecting dedication and subject mastery.</li>
+      <li class="list-group-item">Led and contributed to <strong>individual & group projects</strong>, demonstrating leadership and teamwork.</li>
+      <li class="list-group-item">Achieved <strong>Top 6% LeetCode Global Badge</strong> by solving 50+ coding problems in 2024.</li>
+      <li class="list-group-item">Secured the <strong>only paid internship in my class</strong>, showcasing industry readiness.</li>
+      <li class="list-group-item">Recognized for <strong>guiding peers, adaptability, and leadership qualities</strong> in academic and project settings.</li>
+    </ul>
+
+  </div>
+
+  <!-- Footer -->
+  <%- include('partials/footer') %>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

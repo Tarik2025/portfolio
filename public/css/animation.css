@@ -1,0 +1,57 @@
+/* ==============================
+   Animations (separate file)
+============================== */
+
+/* Gentle neon glow for headings */
+@keyframes glowPulse {
+  0%   { text-shadow: 0 0 4px rgba(0,217,255,.7), 0 0 10px rgba(0,180,255,.5); }
+  50%  { text-shadow: 0 0 10px rgba(0,217,255,.95), 0 0 20px rgba(0,180,255,.7); }
+  100% { text-shadow: 0 0 4px rgba(0,217,255,.7), 0 0 10px rgba(0,180,255,.5); }
+}
+
+/* Card lift shimmer on hover */
+@keyframes cardLift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-4px); }
+}
+
+/* Subtle border glow loop for cards */
+@keyframes borderGlow {
+  0%   { box-shadow: 0 0 18px rgba(0,238,255,.25); }
+  50%  { box-shadow: 0 0 30px rgba(0,238,255,.45); }
+  100% { box-shadow: 0 0 18px rgba(0,238,255,.25); }
+}
+
+/* Pulse for circular certificate thumbnails (same vibe as skills page) */
+@keyframes pulseGlow {
+  from {
+    box-shadow:
+      0 0 20px rgba(0,238,255,.6),
+      0 0 40px rgba(0,200,255,.4);
+  }
+  to {
+    box-shadow:
+      0 0 40px rgba(0,238,255,1),
+      0 0 80px rgba(0,200,255,.8),
+      0 0 120px rgba(0,150,255,.7);
+  }
+}
+
+/* Floating shimmer accent dots (optional) */
+@keyframes floatUp {
+  0%   { transform: translateY(6px); opacity:.75; }
+  50%  { transform: translateY(-2px); opacity:1; }
+  100% { transform: translateY(6px); opacity:.75; }
+}
+
+/* Apply animations via utility classes */
+.animate-glow      { animation: glowPulse 3s ease-in-out infinite; }
+.animate-cardGlow  { animation: borderGlow 6s ease-in-out infinite; }
+.animate-float     { animation: floatUp 2.6s ease-in-out infinite; }
+.animate-pulseGlow { animation: pulseGlow 3s ease-in-out infinite alternate; }
+
+/* Convenience hooks for your markup */
+.section-title.animate-glow {}
+.card.animate-cardGlow {}
+.certificate-thumb.animate-pulseGlow {}
+.achievements .dot.animate-float {}

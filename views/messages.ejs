@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <!-- Favicon / Logo -->
+  <link rel="icon" href="/images/tlogo.jpg" type="image/jpeg">
+
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website of Shaik Mahammad Tarik">
+  <meta name="keywords" content="Tarik, Portfolio, Developer, Engineer, Projects, Certifications">
+  <meta name="author" content="Shaik Mahammad Tarik">
+  <title>Messages</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #e3f2fd, #bbdefb);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      animation: fadeDown 1s ease;
+    }
+
+    /* Message card animation */
+    .list-group-item {
+      background: #ffffff;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 0.8s ease;
+    }
+
+    .list-group-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Fade animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    footer {
+      background: #0d47a1;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+      margin-top: 50px;
+      box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+      animation: fadeUp 1s ease;
+    }
+
+    footer a {
+      color: #ffca28;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      color: #fff176;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">MyWebsite</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/messages">Messages</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Messages Container -->
+  <div class="container my-5">
+    <h2 class="mb-4 text-center text-primary fw-bold">📩 Contact Messages</h2>
+
+    <% if (messages.length === 0) { %>
+      <p class="text-center text-muted">No messages found.</p>
+    <% } else { %>
+      <div class="list-group">
+        <% messages.forEach(msg => { %>
+          <div class="list-group-item shadow-sm">
+            <h5 class="fw-bold text-primary"><%= msg.name %> (<%= msg.email %>)</h5>
+            <p class="text-dark"><%= msg.message %></p>
+            <small class="text-muted">🕒 <%= msg.createdAt.toLocaleString() %></small>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MyWebsite | Made with ❤️ by <a href="smdtarik1244@gmail.com">Shaik Mahammad Tarik</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

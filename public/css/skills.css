@@ -1,0 +1,160 @@
+/* ==============================
+   Skills Page Styles
+============================== */
+
+/* Global */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #001f3f, #003366, #004080); /* Navy Blue Gradient */
+  color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Divider */
+.footer-divider {
+  border-top: 2px solid #17a2b8;
+  margin-top: 40px;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(to right, #001830, #00264d);
+  box-shadow: 0 2px 15px rgba(0, 238, 255, 0.25);
+}
+
+.navbar .nav-link {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  margin: 0 8px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #00e6ff !important;
+  text-shadow: 0 0 8px #00e6ff;
+}
+
+/* Headings */
+h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #00d9ff;
+  text-shadow: 
+    0 0 4px rgba(0, 217, 255, 0.8),
+    0 0 12px rgba(0, 180, 255, 0.6),
+    0 0 20px rgba(0, 120, 200, 0.5);
+  margin-bottom: 30px;
+}
+
+/* Skill Icons */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 3px solid #00e6ff;
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.6);
+  padding: 10px;
+  transition: all 0.4s ease-in-out;
+  animation: pulseGlow 3s infinite alternate;
+}
+
+.card img:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 
+    0 0 35px rgba(0, 238, 255, 1),
+    0 0 70px rgba(0, 200, 255, 0.9),
+    0 0 120px rgba(0, 150, 255, 0.8);
+}
+
+/* Pulse Animation */
+@keyframes pulseGlow {
+  from {
+    box-shadow: 
+      0 0 20px rgba(0, 238, 255, 0.6),
+      0 0 40px rgba(0, 200, 255, 0.4);
+  }
+  to {
+    box-shadow: 
+      0 0 40px rgba(0, 238, 255, 1),
+      0 0 80px rgba(0, 200, 255, 0.8),
+      0 0 120px rgba(0, 150, 255, 0.7);
+  }
+}
+
+/* Cards */
+.card {
+  background: rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid rgba(0, 238, 255, 0.3) !important;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 238, 255, 0.5);
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(to right, #001830, #00264d);
+  color: #e0f7fa;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 15px rgba(0, 238, 255, 0.25);
+  margin-top: 30px;
+}
+
+footer a {
+  color: #00e6ff;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #00e6ff;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .card img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.8rem;
+  }
+  .card {
+    text-align: center;
+  }
+  .card img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  .card img {
+    width: 50px;
+    height: 50px;
+  }
+}

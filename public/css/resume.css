@@ -1,0 +1,192 @@
+/* ==============================
+   Global Styles
+============================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #001f3f, #003366, #004080);
+  color: #f1faff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  line-height: 1.7; /* better readability */
+}
+
+main {
+  flex: 1;
+}
+
+.footer-divider {
+  border-top: 2px solid #17a2b8;
+  margin-top: 40px;
+}
+
+/* ==============================
+   Navbar
+============================== */
+.navbar {
+  background: linear-gradient(to right, #001830, #00264d);
+  box-shadow: 0 2px 15px rgba(0, 238, 255, 0.25);
+}
+
+.navbar .nav-link {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  margin: 0 8px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #00e6ff !important;
+  text-shadow: 0 0 8px #00e6ff;
+}
+
+/* ==============================
+   Headings
+============================== */
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00d9ff;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: glowText 2s infinite alternate, moveText 5s infinite linear;
+  text-shadow: 
+    0 0 4px rgba(0, 217, 255, 0.8),
+    0 0 12px rgba(0, 180, 255, 0.6),
+    0 0 20px rgba(0, 120, 200, 0.5);
+}
+
+@keyframes glowText {
+  from { text-shadow: 0 0 5px #00e6ff, 0 0 10px #00e6ff; }
+  to { text-shadow: 0 0 15px #00e6ff, 0 0 30px #00c6ff; }
+}
+
+@keyframes moveText {
+  0%,100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+/* ==============================
+   Paragraphs
+============================== */
+p {
+  font-size: 1.15rem;
+  color: #f2faff;   /* Brighter for readability */
+  text-align: center;
+  margin-bottom: 15px;
+  line-height: 1.8;
+  text-shadow: 
+    0 0 5px rgba(0, 230, 255, 0.6),
+    0 0 10px rgba(0, 200, 255, 0.4);  /* subtle glow */
+  animation: fadeIn 2s ease-in-out, textPulse 3s infinite alternate;
+}
+
+/* Hover effect for better readability */
+p:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px #00e6ff;
+  transform: scale(1.02);
+}
+
+/* ==============================
+   Resume Card
+============================== */
+.card {
+  background: rgba(0, 0, 0, 0.75) !important;
+  border: 1px solid rgba(0, 238, 255, 0.3) !important;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 238, 255, 0.25);
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  animation: fadeIn 2s ease-in-out;
+  padding: 20px;
+}
+
+.card:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 0 45px rgba(0, 238, 255, 0.7);
+}
+
+/* Icon animation */
+.card i {
+  animation: pulseIcon 2s infinite alternate ease-in-out;
+}
+
+@keyframes pulseIcon {
+  from { transform: scale(1); color: #00e6ff; }
+  to   { transform: scale(1.2); color: #ffffff; }
+}
+
+/* ==============================
+   Button
+============================== */
+.btn-info {
+  font-weight: 600;
+  background: linear-gradient(90deg, #00e6ff, #0077ff);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  transition: all 0.4s ease-in-out;
+  animation: blinkBtn 2s infinite;
+}
+
+.btn-info:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00e6ff;
+}
+
+@keyframes blinkBtn {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ==============================
+   Fade-in Animation
+============================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   Footer
+============================== */
+footer {
+  background: linear-gradient(to right, #001830, #00264d);
+  color: #e0f7fa;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 15px rgba(0, 238, 255, 0.25);
+  margin-top: 30px;
+}
+
+footer a {
+  color: #00e6ff;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #00e6ff;
+}
+
+/* ==============================
+   Responsiveness
+============================== */
+@media (max-width: 768px) {
+  h2 { font-size: 2rem; }
+  p { font-size: 1rem; text-align: justify; padding: 0 10px; }
+  .card { margin: 0 10px; }
+  .btn-info { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  h2 { font-size: 1.6rem; }
+  p { font-size: 0.95rem; line-height: 1.6; }
+  .card { padding: 15px; }
+  .btn-info { font-size: 0.85rem; padding: 8px 15px; }
+}

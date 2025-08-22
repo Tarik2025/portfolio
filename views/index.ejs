@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon / Logo -->
+  <link rel="icon" href="/images/tlogo.jpg" type="image/jpeg">
+
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website of Shaik Mahammad Tarik">
+  <meta name="keywords" content="Tarik, Portfolio, Developer, Engineer, Projects, Certifications">
+  <meta name="author" content="Shaik Mahammad Tarik">
+  <title>Shaik Mahammad Tarik | Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css"> <!-- External CSS -->
+  <style>
+    /* Make sure footer stays at bottom */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1; /* Push footer to bottom */
+    }
+    .footer-divider {
+      border-top: 2px solid #17a2b8; /* Info color line */
+      margin-top: 40px;
+    }
+
+    /* ✅ Typing effect cursor */
+    .typing {
+      display: inline-block;
+      border-right: 2px solid #17a2b8;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink-cursor 0.7s step-end infinite;
+    }
+
+    @keyframes blink-cursor {
+      from { border-color: #17a2b8; }
+      to { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Navbar -->
+  <%- include("partials/navbar") %>
+
+  <!-- ✅ Main Content Wrapper -->
+  <main>
+    <!-- ✅ Hero Section -->
+    <div class="container mt-5 pt-5">
+  <div class="row align-items-center">
+    
+    <!-- Intro Text -->
+    <div class="col-md-7 text-start">
+      <h1 class="text-info fw-bold mb-4">
+        Hi, I'm <span class="blink">Shaik Mahammad Tarik</span>
+      </h1>
+      <!-- Typing Effect Text -->
+      <p class="typing"></p>
+    </div>
+
+   
+<div class="col-md-5 text-end mt-4 mt-md-0">
+  <img src="/images/profile.jpg" alt="Profile" class="profile-pic">
+</div>
+
+
+  </div>
+</div>
+
+
+    <!-- ✅ Added extra margin here -->
+    <div class="container text-center mt-5 pt-5">  
+      <h2 class="text-info">Welcome to My Portfolio</h2>
+      <p class="lead text-light">Showcasing my journey, skills, projects, and achievements.</p>
+    </div>
+  </main>
+
+  <!-- Divider before footer -->
+  <div class="footer-divider"></div>
+
+  <!-- ✅ Footer -->
+  <%- include("partials/footer") %>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>

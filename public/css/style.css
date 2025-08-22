@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #001f3f, #003366, #004080); /* Navy Blue Gradient */
+  background: linear-gradient(to right, #001f3f, #003366, #004080);
   color: #f8f9fa;
   min-height: 100vh;
   display: flex;
@@ -48,7 +48,7 @@ main {
 h1 {
   font-size: 3rem;
   font-weight: bold;
-  color: #00d9ff; /* Softer cyan */
+  color: #00d9ff;
   text-shadow: 
     0 0 5px rgba(0, 217, 255, 0.8),
     0 0 15px rgba(0, 180, 255, 0.6),
@@ -112,7 +112,7 @@ h1 .blink {
     0 0 50px rgba(0, 200, 255, 0.4),
     0 0 80px rgba(0, 150, 255, 0.3);
   transition: all 0.4s ease-in-out;
-  animation: pulseGlow 3s infinite alternate; /* 🌟 Always glowing */
+  animation: pulseGlow 3s infinite alternate;
 }
 
 .profile-pic:hover {
@@ -138,14 +138,13 @@ h1 .blink {
   }
 }
 
-
 /* ==============================
    Section Headings
 ============================== */
 h2 {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #00d9ff; /* Softer cyan */
+  color: #00d9ff;
   text-shadow: 
     0 0 4px rgba(0, 217, 255, 0.8),
     0 0 12px rgba(0, 180, 255, 0.6),
@@ -176,7 +175,6 @@ h2 .blink {
   }
 }
 
-
 p.lead {
   font-size: 1.2rem;
   color: #e0f7fa;
@@ -192,7 +190,7 @@ footer {
   text-align: center;
   font-size: 0.95rem;
   box-shadow: 0 -2px 15px rgba(0, 238, 255, 0.25);
-  margin-top: 30px; /* ✅ Push footer slightly down */
+  margin-top: 30px;
 }
 
 footer a {
@@ -204,4 +202,87 @@ footer a {
 footer a:hover {
   color: #fff;
   text-shadow: 0 0 8px #00e6ff;
+}
+
+/* ==============================
+   ✅ Responsive Design
+============================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .profile-pic {
+    width: 220px;
+    height: 220px;
+  }
+
+  p.lead {
+    font-size: 1.05rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .typing {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    margin: 20px auto;
+    display: block;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  p.lead {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .navbar .nav-link {
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+/* Extra Small Mobiles */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+
+  .typing {
+    font-size: 1rem;
+  }
+
+  p.lead {
+    font-size: 0.9rem;
+  }
 }

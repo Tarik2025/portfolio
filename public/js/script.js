@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const text = "I’m an aspiring Electronics & Communication Engineer, passionate about <br> MERN Stack Development, Machine Learning, and building innovative solutions.";
+  const text ="I’m an aspiring Electronics & Communication Engineer,<br>passionate about  MERN Stack Development,Machine Learning,<br>and building innovative solutions.";
   const typingElement = document.querySelector(".typing");
   let index = 0;
 
@@ -20,6 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
   typingElement.innerHTML = ""; // clear old text
   type();
 });
+
+
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse.classList.contains('show')) {
+        new bootstrap.Collapse(navbarCollapse).hide();
+      }
+    });
+  });
+
+
 
 
  

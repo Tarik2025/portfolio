@@ -1,0 +1,86 @@
+/* 🔹 Brand + Navbar Container */
+.custom-navbar {
+  background: linear-gradient(to right, #001830, #00264d);
+  box-shadow: 0 2px 15px rgba(0, 238, 255, 0.25);
+}
+
+/* 🔹 Navbar links (desktop default) */
+.nav-menu {
+  display: flex; /* visible inline on desktop */
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row; /* inline row */
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar-nav .nav-link {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #00e6ff !important;
+  text-shadow: 0 0 8px #00e6ff;
+}
+
+/* 🔹 Hamburger (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animate Hamburger → X */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 🔹 Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* show hamburger on mobile */
+  }
+
+  .nav-menu {
+    display: none; /* hide menu by default */
+    width: 100%;
+  }
+
+  .nav-menu.open {
+    display: block; /* show when toggled */
+  }
+
+  .navbar-nav {
+    display: grid; /* switch to grid */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 8px;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-nav {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 6px;
+  }
+}

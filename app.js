@@ -1,3 +1,6 @@
+// ==========================
+//        Dependencies
+// ==========================
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -8,29 +11,46 @@ const cors = require("cors");
 
 const app = express();
 
-// ✅ MongoDB Model
+// ==========================
+//       MongoDB Model
+// ==========================
 const Contact = require("./models/contact");
 
-// ✅ Middleware
-app.use(express.json()); 
-app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(morgan("dev")); 
-app.use(helmet()); 
-app.use(cors()); 
+// ==========================
+//        Middleware
+// ==========================
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+app.use(helmet());
+app.use(cors());
 
-// ✅ MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/portfolioDB")
+// ==========================
+//    MongoDB Connection
+// ==========================
+const mongoURI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/portfolioDB";
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.log("❌ MongoDB Error:", err));
 
-// ✅ View engine setup
+// ==========================
+//     View Engine Setup
+// ==========================
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// ✅ Static files
+// ==========================
+//       Static Files
+// ==========================
 app.use(express.static(path.join(__dirname, "public")));
 
-// ✅ Website Pages
+// ==========================
+//       Website Pages
+// ==========================
 app.get("/", (req, res) => res.render("index"));
 app.get("/about", (req, res) => res.render("about"));
 app.get("/education", (req, res) => res.render("education"));
@@ -41,10 +61,16 @@ app.get("/certifications-achievements", (req, res) => res.render("certifications
 app.get("/contact", (req, res) => res.render("contact"));
 app.get("/resume", (req, res) => res.render("resume"));
 
-// ✅ Contact API (Save Message to DB)
+// ==========================
+//   Contact API (Save Message)
+// ==========================
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(400).json({ success: false, msg: "All fields are required" });
+    }
+
     const newMessage = new Contact({ name, email, message });
     await newMessage.save();
 
@@ -54,21 +80,26 @@ app.post("/api/contact", async (req, res) => {
       data: newMessage
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ success: false, msg: "Error saving message" });
   }
 });
 
-// ✅ Show login form first
+// ==========================
+//   Show login form first
+// ==========================
 app.get("/messages", (req, res) => {
-  res.render("login"); // renders login.ejs
+  res.render("login", { error: null });
 });
 
-// ✅ Handle login form
+// ==========================
+//   Handle login form
+// ==========================
 app.post("/messages", async (req, res) => {
   const { userId, password } = req.body;
 
-  const ADMIN_ID = "TARIK2025";
-  const ADMIN_PASSWORD = "Apple@2302";
+  const ADMIN_ID = process.env.ADMIN_ID || "TARIK2025";
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Apple@2302";
 
   if (userId !== ADMIN_ID || password !== ADMIN_PASSWORD) {
     return res.render("login", { error: "❌ Invalid User ID or Password" });
@@ -78,11 +109,13 @@ app.post("/messages", async (req, res) => {
     const messages = await Contact.find().sort({ createdAt: -1 });
     res.render("messages", { messages });
   } catch (error) {
+    console.error(error);
     res.status(500).send("Error loading messages");
   }
 });
 
-
-// ✅ Start server
+// ==========================
+//       Start Server
+// ==========================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));

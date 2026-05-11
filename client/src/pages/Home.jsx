@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import api from "../api";
-import { FaArrowRight, FaGithub, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaArrowRight, FaGithub, FaLinkedin, FaSearch } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [content, setContent] = useState(null);
   const [displayed, setDisplayed] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [allData, setAllData] = useState({ projects: [], skills: [], education: [], internships: [], certifications: [] });
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get("/api/home").then(res => {
@@ -22,6 +28,32 @@ export default function Home() {
       });
       setLoaded(true);
     });
+
+    // Fetch all data for search
+    Promise.all([
+      api.get("/api/projects").catch(() => ({ data: { data: [] } })),
+      api.get("/api/skills").catch(() => ({ data: { data: [] } })),
+      api.get("/api/education").catch(() => ({ data: { data: [] } })),
+      api.get("/api/internships").catch(() => ({ data: { data: [] } })),
+      api.get("/api/certifications").catch(() => ({ data: { data: { certifications: [], achievements: [] } } })),
+    ]).then(([proj, skill, edu, intern, cert]) => {
+      setAllData({
+        projects: proj.data.data || [],
+        skills: skill.data.data || [],
+        education: edu.data.data || [],
+        internships: intern.data.data || [],
+        certifications: cert.data.data?.certifications || [],
+      });
+    });
+  }, []);
+
+  // Close results on outside click
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) setShowResults(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
   useEffect(() => {
@@ -35,6 +67,53 @@ export default function Home() {
     }, 20);
     return () => clearInterval(interval);
   }, [content]);
+
+  const handleSearch = (val) => {
+    setQuery(val);
+    if (!val.trim()) { setResults([]); setShowResults(false); return; }
+
+    const q = val.toLowerCase();
+    const matched = [];
+
+    allData.projects.forEach(p => {
+      if (p.title?.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q) || p.tech?.some(t => t.toLowerCase().includes(q)) || p.skills?.toLowerCase().includes(q)) {
+        matched.push({ type: "Project", title: p.title, desc: p.description, link: "/projects" });
+      }
+    });
+
+    allData.skills.forEach(s => {
+      if (s.category?.toLowerCase().includes(q) || s.items?.some(i => i.toLowerCase().includes(q))) {
+        matched.push({ type: "Skill", title: s.category, desc: s.items?.join(", "), link: "/skills" });
+      }
+    });
+
+    allData.education.forEach(e => {
+      if (e.school?.toLowerCase().includes(q) || e.degree?.toLowerCase().includes(q) || e.coursework?.some(c => c.toLowerCase().includes(q))) {
+        matched.push({ type: "Education", title: e.school, desc: e.degree, link: "/education" });
+      }
+    });
+
+    allData.internships.forEach(i => {
+      if (i.company?.toLowerCase().includes(q) || i.role?.toLowerCase().includes(q) || i.description?.toLowerCase().includes(q) || i.skills?.some(s => s.toLowerCase().includes(q))) {
+        matched.push({ type: "Internship", title: `${i.company} - ${i.role}`, desc: i.description, link: "/internships" });
+      }
+    });
+
+    allData.certifications.forEach(c => {
+      if (c.title?.toLowerCase().includes(q) || c.issuer?.toLowerCase().includes(q) || c.tools?.toLowerCase().includes(q)) {
+        matched.push({ type: "Certification", title: c.title, desc: c.issuer, link: "/certifications" });
+      }
+    });
+
+    setResults(matched.slice(0, 6));
+    setShowResults(true);
+  };
+
+  const handleResultClick = (link) => {
+    setShowResults(false);
+    setQuery("");
+    navigate(link);
+  };
 
   if (!loaded) {
     return (
@@ -104,8 +183,51 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Search Bar */}
+      <div className="max-w-2xl mx-auto mt-16 animate-slide-up stagger-5" ref={searchRef}>
+        <div className="relative">
+          <div className="flex items-center bg-[#0d1f3c]/80 border border-cyan-500/20 rounded-2xl px-5 py-3.5 shadow-lg shadow-cyan-500/5 hover:border-cyan-500/40 hover:shadow-cyan-500/10 focus-within:border-cyan-400/50 focus-within:shadow-cyan-500/15 transition-all duration-300">
+            <FaSearch className="text-cyan-400/60 mr-3 text-sm" />
+            <input
+              type="text"
+              value={query}
+              onChange={e => handleSearch(e.target.value)}
+              onFocus={() => query && setShowResults(true)}
+              placeholder="Search projects, skills, internships..."
+              className="flex-1 bg-transparent text-white text-sm placeholder-gray-500 focus:outline-none"
+            />
+            {query && (
+              <button onClick={() => { setQuery(""); setResults([]); setShowResults(false); }} className="text-gray-500 hover:text-white text-xs ml-2 transition-colors">✕</button>
+            )}
+          </div>
+
+          {/* Results dropdown */}
+          {showResults && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-[#0d1f3c]/95 backdrop-blur-xl border border-cyan-500/20 rounded-xl shadow-2xl shadow-cyan-500/10 overflow-hidden z-50 animate-scale-in">
+              {results.length === 0 ? (
+                <div className="px-5 py-4 text-gray-500 text-sm text-center">No results found for "{query}"</div>
+              ) : (
+                <div className="py-2">
+                  {results.map((r, i) => (
+                    <button key={i} onClick={() => handleResultClick(r.link)}
+                      className="w-full text-left px-5 py-3 hover:bg-cyan-500/10 transition-colors flex items-start gap-3 group">
+                      <span className="text-[10px] px-2 py-0.5 bg-cyan-500/15 text-cyan-400 rounded-md font-medium mt-0.5 flex-shrink-0">{r.type}</span>
+                      <div className="min-w-0">
+                        <p className="text-white text-sm font-medium truncate group-hover:text-cyan-300 transition-colors">{r.title}</p>
+                        <p className="text-gray-500 text-xs truncate mt-0.5">{r.desc}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        <p className="text-center text-gray-600 text-xs mt-2">Search across my portfolio — projects, skills, education & more</p>
+      </div>
+
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mt-20 max-w-2xl mx-auto animate-slide-up stagger-5">
+      <div className="grid grid-cols-3 gap-4 mt-14 max-w-2xl mx-auto animate-slide-up stagger-6">
         {[
           { label: "CGPA", value: "8.9" },
           { label: "Internships", value: "4+" },
@@ -119,7 +241,7 @@ export default function Home() {
       </div>
 
       {/* Subtitle */}
-      <div className="text-center mt-16 space-y-3 animate-slide-up stagger-6">
+      <div className="text-center mt-16 space-y-3 animate-slide-up stagger-7">
         <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">{content.subtitle}</h2>
         <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">{content.description}</p>
       </div>

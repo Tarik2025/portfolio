@@ -5,6 +5,14 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import PageTransition from "../components/PageTransition";
 import AnimatedSection from "../components/AnimatedSection";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+const getImageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/uploads")) return `${API_URL}${path}`;
+  return path;
+};
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +46,7 @@ export default function Projects() {
                 {p.image && (
                   <div className="relative overflow-hidden">
                     <motion.img
-                      src={p.image}
+                      src={getImageUrl(p.image)}
                       alt={p.title}
                       className="w-full h-48 object-cover"
                       whileHover={{ scale: 1.08 }}

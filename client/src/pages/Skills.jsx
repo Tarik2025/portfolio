@@ -4,6 +4,14 @@ import api from "../api";
 import PageTransition from "../components/PageTransition";
 import AnimatedSection from "../components/AnimatedSection";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+const getImageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/uploads")) return `${API_URL}${path}`;
+  return path;
+};
+
 export default function Skills() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +47,7 @@ export default function Skills() {
                   {cat.icon && (
                     <motion.div className="relative inline-block mb-4" whileHover={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 0.4 }}>
                       <div className="absolute inset-0 bg-cyan-400/10 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <img src={cat.icon} alt={cat.category} className="relative w-16 h-16 mx-auto rounded-xl object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <img src={getImageUrl(cat.icon)} alt={cat.category} className="relative w-16 h-16 mx-auto rounded-xl object-cover group-hover:scale-110 transition-transform duration-300" />
                     </motion.div>
                   )}
                   <h3 className="text-lg font-semibold text-cyan-400 mb-4 group-hover:text-cyan-300 transition-colors">{cat.category}</h3>

@@ -5,6 +5,14 @@ import { FaGraduationCap } from "react-icons/fa";
 import PageTransition from "../components/PageTransition";
 import AnimatedSection from "../components/AnimatedSection";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+const getImageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/uploads")) return `${API_URL}${path}`;
+  return path;
+};
+
 export default function Education() {
   const [education, setEducation] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,7 +68,7 @@ export default function Education() {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
                         {edu.logo ? (
-                          <motion.img whileHover={{ scale: 1.15, rotate: 5 }} src={edu.logo} alt="" className="w-12 h-12 object-contain rounded-lg bg-white/5 p-1" />
+                          <motion.img whileHover={{ scale: 1.15, rotate: 5 }} src={getImageUrl(edu.logo)} alt="" className="w-12 h-12 object-contain rounded-lg bg-white/5 p-1" />
                         ) : (
                           <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center"><FaGraduationCap className="text-cyan-400 text-xl" /></div>
                         )}
@@ -94,7 +102,7 @@ export default function Education() {
                     </div>
                     {edu.image && (
                       <motion.div className="self-center" whileHover={{ scale: 1.05, rotate: 1 }}>
-                        <img src={edu.image} alt={edu.school} className="w-44 h-44 rounded-2xl object-cover border-2 border-cyan-400/30 shadow-[0_0_30px_rgba(0,230,255,0.15)]" />
+                        <img src={getImageUrl(edu.image)} alt={edu.school} className="w-44 h-44 rounded-2xl object-cover border-2 border-cyan-400/30 shadow-[0_0_30px_rgba(0,230,255,0.15)]" />
                       </motion.div>
                     )}
                   </div>

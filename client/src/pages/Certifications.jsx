@@ -5,6 +5,14 @@ import { FaTrophy, FaCertificate } from "react-icons/fa";
 import PageTransition from "../components/PageTransition";
 import AnimatedSection from "../components/AnimatedSection";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+const getImageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/uploads")) return `${API_URL}${path}`;
+  return path;
+};
+
 export default function Certifications() {
   const [certs, setCerts] = useState([]);
   const [achievements, setAchievements] = useState([]);
@@ -42,7 +50,7 @@ export default function Certifications() {
                 {cert.image && (
                   <div className="relative overflow-hidden">
                     <motion.img
-                      src={cert.image}
+                      src={getImageUrl(cert.image)}
                       alt={cert.title}
                       className="w-full h-52 object-cover"
                       whileHover={{ scale: 1.05 }}

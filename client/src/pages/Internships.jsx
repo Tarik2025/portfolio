@@ -5,6 +5,14 @@ import { FaBriefcase } from "react-icons/fa";
 import PageTransition from "../components/PageTransition";
 import AnimatedSection from "../components/AnimatedSection";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+const getImageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/uploads")) return `${API_URL}${path}`;
+  return path;
+};
+
 export default function Internships() {
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +47,7 @@ export default function Internships() {
                   {intern.logo ? (
                     <motion.img
                       whileHover={{ scale: 1.15, rotate: 5 }}
-                      src={intern.logo}
+                      src={getImageUrl(intern.logo)}
                       alt=""
                       className="w-14 h-14 rounded-xl object-cover border border-cyan-500/20 bg-white/5 p-1"
                     />

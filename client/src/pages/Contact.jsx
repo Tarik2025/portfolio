@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import api from "../api";
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaMapMarkerAlt } from "react-icons/fa";
 import { FiSend, FiCheck } from "react-icons/fi";
+import PageTransition from "../components/PageTransition";
+import AnimatedSection from "../components/AnimatedSection";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -46,102 +49,122 @@ export default function Contact() {
   }`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 animate-fade-in">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-3">Get In Touch</h2>
-        <p className="text-gray-400 max-w-lg mx-auto">I'd love to hear from you! Whether it's a project, a job opportunity, or just to say hello — feel free to reach out.</p>
-      </div>
+    <PageTransition>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        <AnimatedSection variant="fadeUp" className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-3">Get In Touch</h2>
+          <p className="text-gray-400 max-w-lg mx-auto">I'd love to hear from you! Whether it's a project, a job opportunity, or just to say hello — feel free to reach out.</p>
+        </AnimatedSection>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
-        {/* Form - takes 3 cols */}
-        <div className="lg:col-span-3 bg-[#0d1f3c]/60 border border-cyan-500/10 rounded-2xl p-6 sm:p-8">
-          <h3 className="text-lg font-semibold text-white mb-5">Send a Message</h3>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="text-sm text-gray-400 mb-1.5 block">Full Name</label>
-              <input type="text" value={form.name} onChange={e => { setForm({ ...form, name: e.target.value }); if (errors.name) setErrors({ ...errors, name: "" }); }}
-                className={inputClass("name")} placeholder="John Doe" />
-              {errors.name && <p className="text-red-400 text-xs mt-1.5">{errors.name}</p>}
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 mb-1.5 block">Email Address</label>
-              <input type="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }); if (errors.email) setErrors({ ...errors, email: "" }); }}
-                className={inputClass("email")} placeholder="john@example.com" />
-              {errors.email && <p className="text-red-400 text-xs mt-1.5">{errors.email}</p>}
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 mb-1.5 block">Message</label>
-              <textarea rows="5" value={form.message} onChange={e => { setForm({ ...form, message: e.target.value }); if (errors.message) setErrors({ ...errors, message: "" }); }}
-                className={`${inputClass("message")} resize-none`} placeholder="Write your message here..." />
-              {errors.message && <p className="text-red-400 text-xs mt-1.5">{errors.message}</p>}
-              <p className="text-gray-600 text-xs mt-1 text-right">{form.message.length}/500</p>
-            </div>
-            <button type="submit" disabled={loading}
-              className={`w-full py-3.5 font-semibold rounded-xl transition-all duration-200 shadow-lg flex items-center justify-center gap-2 ${
-                status?.type === "success" 
-                  ? "bg-green-600 text-white shadow-green-500/20" 
-                  : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:scale-[1.02] shadow-cyan-500/25 disabled:opacity-50 disabled:hover:scale-100"
-              }`}>
-              {loading ? (
-                <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Sending...</>
-              ) : status?.type === "success" ? (
-                <><FiCheck className="text-lg" /> Sent!</>
-              ) : (
-                <><FiSend /> Send Message</>
-              )}
-            </button>
-          </form>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+          {/* Form */}
+          <AnimatedSection variant="fadeRight" className="lg:col-span-3">
+            <motion.div
+              className="bg-[#0d1f3c]/60 border border-cyan-500/10 rounded-2xl p-6 sm:p-8"
+              whileHover={{ borderColor: "rgba(0,230,255,0.2)" }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-lg font-semibold text-white mb-5">Send a Message</h3>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+                  <label className="text-sm text-gray-400 mb-1.5 block">Full Name</label>
+                  <input type="text" value={form.name} onChange={e => { setForm({ ...form, name: e.target.value }); if (errors.name) setErrors({ ...errors, name: "" }); }}
+                    className={inputClass("name")} placeholder="John Doe" />
+                  {errors.name && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 text-xs mt-1.5">{errors.name}</motion.p>}
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+                  <label className="text-sm text-gray-400 mb-1.5 block">Email Address</label>
+                  <input type="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }); if (errors.email) setErrors({ ...errors, email: "" }); }}
+                    className={inputClass("email")} placeholder="john@example.com" />
+                  {errors.email && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 text-xs mt-1.5">{errors.email}</motion.p>}
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+                  <label className="text-sm text-gray-400 mb-1.5 block">Message</label>
+                  <textarea rows="5" value={form.message} onChange={e => { setForm({ ...form, message: e.target.value }); if (errors.message) setErrors({ ...errors, message: "" }); }}
+                    className={`${inputClass("message")} resize-none`} placeholder="Write your message here..." />
+                  {errors.message && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 text-xs mt-1.5">{errors.message}</motion.p>}
+                  <p className="text-gray-600 text-xs mt-1 text-right">{form.message.length}/500</p>
+                </motion.div>
+                <motion.button
+                  type="submit"
+                  disabled={loading}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`w-full py-3.5 font-semibold rounded-xl transition-all duration-200 shadow-lg flex items-center justify-center gap-2 ${
+                    status?.type === "success"
+                      ? "bg-green-600 text-white shadow-green-500/20"
+                      : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-cyan-500/25 disabled:opacity-50"
+                  }`}
+                >
+                  {loading ? (
+                    <><motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full inline-block" /> Sending...</>
+                  ) : status?.type === "success" ? (
+                    <><FiCheck className="text-lg" /> Sent!</>
+                  ) : (
+                    <><FiSend /> Send Message</>
+                  )}
+                </motion.button>
+              </form>
+            </motion.div>
+          </AnimatedSection>
 
-        {/* Info - takes 2 cols */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-[#0d1f3c]/60 border border-cyan-500/10 rounded-2xl p-6 sm:p-8">
-            <h3 className="text-lg font-semibold text-white mb-5">Contact Info</h3>
-            <div className="space-y-5">
-              <a href="mailto:smdtarik1244@gmail.com" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors group">
-                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center group-hover:bg-cyan-500/20 transition"><FaEnvelope className="text-cyan-400" /></div>
-                <div><p className="text-xs text-gray-500">Email</p><p className="text-sm">smdtarik1244@gmail.com</p></div>
-              </a>
-              <a href="tel:+919492610054" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors group">
-                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center group-hover:bg-cyan-500/20 transition"><FaPhone className="text-cyan-400" /></div>
-                <div><p className="text-xs text-gray-500">Phone</p><p className="text-sm">+91 94926 10054</p></div>
-              </a>
-              <a href="tel:+919392426719" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors group">
-                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center group-hover:bg-cyan-500/20 transition"><FaPhone className="text-cyan-400" /></div>
-                <div><p className="text-xs text-gray-500">Phone (Alt)</p><p className="text-sm">+91 93924 26719</p></div>
-              </a>
-              <div className="flex items-center gap-4 text-gray-300">
-                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center"><FaMapMarkerAlt className="text-cyan-400" /></div>
-                <div><p className="text-xs text-gray-500">Location</p><p className="text-sm">Proddatur, India</p></div>
+          {/* Info */}
+          <AnimatedSection variant="fadeLeft" delay={0.2} className="lg:col-span-2 space-y-6">
+            <div className="bg-[#0d1f3c]/60 border border-cyan-500/10 rounded-2xl p-6 sm:p-8">
+              <h3 className="text-lg font-semibold text-white mb-5">Contact Info</h3>
+              <div className="space-y-5">
+                {[
+                  { href: "mailto:smdtarik1244@gmail.com", icon: <FaEnvelope className="text-cyan-400" />, label: "Email", value: "smdtarik1244@gmail.com" },
+                  { href: "tel:+919492610054", icon: <FaPhone className="text-cyan-400" />, label: "Phone", value: "+91 94926 10054" },
+                  { href: "tel:+919392426719", icon: <FaPhone className="text-cyan-400" />, label: "Phone (Alt)", value: "+91 93924 26719" },
+                  { href: null, icon: <FaMapMarkerAlt className="text-cyan-400" />, label: "Location", value: "Proddatur, India" },
+                ].map((item, i) => {
+                  const Wrapper = item.href ? "a" : "div";
+                  return (
+                    <motion.div key={i} whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                      <Wrapper href={item.href || undefined} className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors group">
+                        <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center group-hover:bg-cyan-500/20 transition">{item.icon}</div>
+                        <div><p className="text-xs text-gray-500">{item.label}</p><p className="text-sm">{item.value}</p></div>
+                      </Wrapper>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
-          </div>
 
-          <div className="bg-[#0d1f3c]/60 border border-cyan-500/10 rounded-2xl p-6 sm:p-8">
-            <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
-            <div className="flex gap-3">
-              <a href="https://www.linkedin.com/in/shaik-tarik-3a0504237/" target="_blank" rel="noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#0077b5]/10 border border-[#0077b5]/30 text-[#0077b5] rounded-xl hover:bg-[#0077b5]/20 transition text-sm font-medium">
-                <FaLinkedin /> LinkedIn
-              </a>
-              <a href="https://github.com/Tarik2025" target="_blank" rel="noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 border border-gray-600/30 text-gray-300 rounded-xl hover:bg-white/10 transition text-sm font-medium">
-                <FaGithub /> GitHub
-              </a>
+            <div className="bg-[#0d1f3c]/60 border border-cyan-500/10 rounded-2xl p-6 sm:p-8">
+              <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
+              <div className="flex gap-3">
+                <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} href="https://www.linkedin.com/in/shaik-tarik-3a0504237/" target="_blank" rel="noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#0077b5]/10 border border-[#0077b5]/30 text-[#0077b5] rounded-xl hover:bg-[#0077b5]/20 transition text-sm font-medium">
+                  <FaLinkedin /> LinkedIn
+                </motion.a>
+                <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} href="https://github.com/Tarik2025" target="_blank" rel="noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 border border-gray-600/30 text-gray-300 rounded-xl hover:bg-white/10 transition text-sm font-medium">
+                  <FaGithub /> GitHub
+                </motion.a>
+              </div>
+              <p className="text-gray-500 text-xs mt-4 text-center">Let's connect and create something amazing together!</p>
             </div>
-            <p className="text-gray-500 text-xs mt-4 text-center">Let's connect and create something amazing together!</p>
-          </div>
+          </AnimatedSection>
         </div>
-      </div>
 
-      {/* Toast notification */}
-      {status && (
-        <div className={`fixed top-6 right-6 max-w-sm px-5 py-3 rounded-xl font-medium shadow-2xl z-50 animate-slide-up ${
-          status.type === "success" ? "bg-green-900/95 text-green-300 border border-green-500/50" : "bg-red-900/95 text-red-300 border border-red-500/50"
-        }`}>
-          {status.msg}
-        </div>
-      )}
-    </div>
+        {/* Toast notification */}
+        <AnimatePresence>
+          {status && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, x: 20 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              exit={{ opacity: 0, y: -20, x: 20 }}
+              className={`fixed top-6 right-6 max-w-sm px-5 py-3 rounded-xl font-medium shadow-2xl z-50 ${
+                status.type === "success" ? "bg-green-900/95 text-green-300 border border-green-500/50" : "bg-red-900/95 text-red-300 border border-red-500/50"
+              }`}
+            >
+              {status.msg}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </PageTransition>
   );
 }
